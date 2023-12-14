@@ -1,5 +1,9 @@
 // Code your solution in this file!
 function distanceFromHqInBlocks(blocks) {
+  // Math.abs static method returns the absolute value of a number.
+  //  1) returns a distance in blocks
+  //  2) returns a distance in blocks
+  //  3) calculates distances below 42nd street
   return Math.abs(blocks - 42);
 }
 //    if (blocks < 42) {
@@ -9,29 +13,35 @@ function distanceFromHqInBlocks(blocks) {
 //    } else {
 //        return 0;
 //    }
+// look into abs record
 //}
 
 function distanceFromHqInFeet(distance) {
-  return distanceFromHqInBlocks(distance) * 264;
+  // Create a variable to store function(distanceFromHqInBlocks(distance))
+  let distanceInFeet = distanceFromHqInBlocks(distance);
+  // Return variable in feet when each block = 264 feet
+  return distanceInFeet * 264;
 }
 
 function distanceTravelledInFeet(pointA, pointB) {
-  if (pointA < pointB) {
-    return (pointB - pointA) * 264;
-  } else if (pointA > pointB) {
-    return (pointA - pointB) * 264;
-  }
+  return Math.abs(pointA - pointB) * 264;
 }
 
 function calculatesFarePrice(start, end) {
-  const distance = distanceTravelledInFeet(start, end);
+  // Given the same starting and ending block as the previous test, return the fare for the customer.
+  // Set a variable for the previous function
+  let distance = distanceTravelledInFeet(start, end);
+  // gives customers a free sample if its 400 feet or less
   if (distance <= 400) {
     return 0;
+    // charges 2 cents per foot when total feet travelled is between 400 and 2000 (remember the first 400 feet are free!)
   } else if (distance > 400 && distance < 2000) {
-    return (distance - 400) * 0.02;
+    return 0.02 * (distance - 400);
+    // charges 25 dollars for a distance over 2000 feet
   } else if (distance > 2000 && distance < 2500) {
     return 25;
-  } else if (distance >= 2500) {
+  } else {
+    // does not allow rides over 2500 feet
     return "cannot travel that far";
   }
 }
